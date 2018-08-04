@@ -11,8 +11,8 @@ import HelpContent from "../Utility/HelpContent";
 import assetUtils from "common/asset_utils";
 import utils from "common/utils";
 import FormattedTime from "../Utility/FormattedTime";
-import {ChainStore} from "bitsharesjs/es";
-import {Apis} from "bitsharesjs-ws";
+import {ChainStore} from "indextcjs";
+import {Apis} from "indexjs-ws";
 import {Tabs, Tab} from "../Utility/Tabs";
 import {CallOrder, FeedPrice} from "common/MarketClasses";
 import Page404 from "../Page404/Page404";
@@ -653,17 +653,21 @@ class Asset extends React.Component {
         var whiteLists = permissionBooleans["white_list"] ? (
             <span>
                 <br />
-                <Translate content="explorer.asset.permissions.blacklist_authorities" />:
-                &nbsp;{this.renderAuthorityList(options.blacklist_authorities)}
+                <Translate content="explorer.asset.permissions.blacklist_authorities" />
+                : &nbsp;
+                {this.renderAuthorityList(options.blacklist_authorities)}
                 <br />
-                <Translate content="explorer.asset.permissions.blacklist_markets" />:
-                &nbsp;{this.renderMarketList(asset, options.blacklist_markets)}
+                <Translate content="explorer.asset.permissions.blacklist_markets" />
+                : &nbsp;
+                {this.renderMarketList(asset, options.blacklist_markets)}
                 <br />
-                <Translate content="explorer.asset.permissions.whitelist_authorities" />:
-                &nbsp;{this.renderAuthorityList(options.whitelist_authorities)}
+                <Translate content="explorer.asset.permissions.whitelist_authorities" />
+                : &nbsp;
+                {this.renderAuthorityList(options.whitelist_authorities)}
                 <br />
-                <Translate content="explorer.asset.permissions.whitelist_markets" />:
-                &nbsp;{this.renderMarketList(asset, options.whitelist_markets)}
+                <Translate content="explorer.asset.permissions.whitelist_markets" />
+                : &nbsp;
+                {this.renderMarketList(asset, options.whitelist_markets)}
             </span>
         ) : null;
 
@@ -869,21 +873,23 @@ class Asset extends React.Component {
                     </th>
                     <th>
                         <Translate content="explorer.asset.price_feed_data.settlement_price" />
-                        <br />
-                        ({this.formattedPrice(
+                        <br />(
+                        {this.formattedPrice(
                             settlement_price_header,
                             false,
                             true
-                        )})
+                        )}
+                        )
                     </th>
                     <th>
                         <Translate content="explorer.asset.price_feed_data.core_exchange_rate" />
-                        <br />
-                        ({this.formattedPrice(
+                        <br />(
+                        {this.formattedPrice(
                             core_exchange_rate_header,
                             false,
                             true
-                        )})
+                        )}
+                        )
                     </th>
                     <th>
                         {" "}
@@ -956,7 +962,8 @@ class Asset extends React.Component {
                         <Translate content="transaction.collateral" />
                         {this.state.callOrders.length ? (
                             <span>
-                                &nbsp;(<FormattedAsset
+                                &nbsp;(
+                                <FormattedAsset
                                     amount={this.state.callOrders[0]
                                         .getCollateral()
                                         .getAmount()}
@@ -977,7 +984,8 @@ class Asset extends React.Component {
                         <Translate content="transaction.borrow_amount" />
                         {this.state.callOrders.length ? (
                             <span>
-                                &nbsp;(<FormattedAsset
+                                &nbsp;(
+                                <FormattedAsset
                                     amount={this.state.callOrders[0]
                                         .amountToReceive()
                                         .getAmount()}
@@ -999,7 +1007,8 @@ class Asset extends React.Component {
                         </span>
                         {this.state.callOrders.length ? (
                             <span>
-                                &nbsp;(<FormattedPrice
+                                &nbsp;(
+                                <FormattedPrice
                                     base_amount={
                                         this.state.callOrders[0].call_price.base
                                             .amount
@@ -1018,9 +1027,13 @@ class Asset extends React.Component {
                                     }
                                     hide_value
                                     noPopOver
-                                />)
+                                />
+                                )
                             </span>
                         ) : null}
+                    </th>
+                    <th>
+                        <Translate content="borrow.coll_ratio_target" />
                     </th>
                     <th
                         className="clickable"
@@ -1060,6 +1073,13 @@ class Asset extends React.Component {
                             quote_asset={c.call_price.quote.asset_id}
                             hide_symbols
                         />
+                    </td>
+                    <td style={{textAlign: "right", paddingRight: 10}}>
+                        {!!c.order.target_collateral_ratio
+                            ? (c.order.target_collateral_ratio / 1000).toFixed(
+                                  3
+                              )
+                            : "-"}
                     </td>
                     <td className={c.getStatus()} style={{textAlign: "right"}}>
                         {c.getRatio().toFixed(3)}
@@ -1155,19 +1175,22 @@ class Asset extends React.Component {
     }
 }
 
-Asset = connect(Asset, {
-    listenTo() {
-        return [AccountStore];
-    },
-    getProps() {
-        const chainID = Apis.instance().chain_id;
-        return {
-            currentAccount:
-                AccountStore.getState().currentAccount ||
-                AccountStore.getState().passwordAccount
-        };
+Asset = connect(
+    Asset,
+    {
+        listenTo() {
+            return [AccountStore];
+        },
+        getProps() {
+            const chainID = Apis.instance().chain_id;
+            return {
+                currentAccount:
+                    AccountStore.getState().currentAccount ||
+                    AccountStore.getState().passwordAccount
+            };
+        }
     }
-});
+);
 
 Asset = AssetWrapper(Asset, {
     propNames: ["backingAsset"]

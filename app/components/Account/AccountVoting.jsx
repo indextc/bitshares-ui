@@ -2,7 +2,7 @@ import React from "react";
 import Immutable from "immutable";
 import Translate from "react-translate-component";
 import accountUtils from "common/account_utils";
-import {ChainStore, FetchChainObjects} from "bitsharesjs/es";
+import {ChainStore, FetchChainObjects} from "indextcjs";
 import WorkerApproval from "./WorkerApproval";
 import VotingAccountsList from "./VotingAccountsList";
 import cnames from "classnames";
@@ -974,9 +974,11 @@ class AccountVoting extends React.Component {
                                                     style={{textAlign: "left"}}
                                                 >
                                                     <Translate content="account.votes.total_budget" />{" "}
-                                                    (<AssetName
+                                                    (
+                                                    <AssetName
                                                         name={preferredUnit}
-                                                    />)
+                                                    />
+                                                    )
                                                 </th>
                                                 <th
                                                     colSpan="2"
@@ -1060,9 +1062,11 @@ class AccountVoting extends React.Component {
                                                         fontSize: "0.8rem"
                                                     }}
                                                 >
-                                                    (<AssetName
+                                                    (
+                                                    <AssetName
                                                         name={preferredUnit}
-                                                    />)
+                                                    />
+                                                    )
                                                 </div>
                                             </th>
                                             {workerTableIndex === 2 ||
@@ -1077,9 +1081,11 @@ class AccountVoting extends React.Component {
                                                             fontSize: "0.8rem"
                                                         }}
                                                     >
-                                                        (<AssetName
+                                                        (
+                                                        <AssetName
                                                             name={preferredUnit}
-                                                        />)
+                                                        />
+                                                        )
                                                     </div>
                                                 </th>
                                             )}

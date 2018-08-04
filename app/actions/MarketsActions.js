@@ -1,8 +1,8 @@
 import alt from "alt-instance";
 import WalletApi from "api/WalletApi";
 import WalletDb from "stores/WalletDb";
-import {ChainStore} from "bitsharesjs/es";
-import {Apis} from "bitsharesjs-ws";
+import {ChainStore} from "indextcjs";
+import {Apis} from "indexjs-ws";
 import marketUtils from "common/market_utils";
 import accountUtils from "common/account_utils";
 import Immutable from "immutable";
@@ -92,7 +92,7 @@ class MarketsActions {
                         0,
                         marketStatsQueueLength
                     );
-                    Promise.all(currentBatch.map(q => q.promise))
+                    return Promise.all(currentBatch.map(q => q.promise))
                         .then(results => {
                             dispatch({
                                 tickers: results,
@@ -103,6 +103,7 @@ class MarketsActions {
                             marketStatsQueue.splice(0, results.length);
                             if (marketStatsQueue.length === 0) {
                                 marketStatsQueueActive = false;
+                                return;
                             } else {
                                 return processQueue();
                             }

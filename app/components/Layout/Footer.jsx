@@ -18,7 +18,7 @@ import LoadingIndicator from "../LoadingIndicator";
 import counterpart from "counterpart";
 import ConfirmModal from "../Modal/ConfirmModal";
 import ZfApi from "react-foundation-apps/src/utils/foundation-api";
-import {ChainStore} from "bitsharesjs/es";
+import {ChainStore} from "indextcjs";
 import ifvisible from "ifvisible";
 import {getWalletName} from "branding";
 
@@ -236,7 +236,7 @@ class Footer extends React.Component {
             // handling out of sync state within this one call
 
             let forceReconnectAfterSeconds = 60;
-            let askToReconnectAfterSeconds = 5;
+            let askToReconnectAfterSeconds = 45;
 
             // Trigger automatic reconnect after X seconds
             setTimeout(() => {
@@ -246,7 +246,7 @@ class Footer extends React.Component {
             }, forceReconnectAfterSeconds * 1000);
 
             // Still out of sync?
-            if (this.getBlockTimeDelta() > 3) {
+            if (this.getBlockTimeDelta() > 10) {
                 console.log(
                     "Your node is out of sync since " +
                         this.getBlockTimeDelta() +
@@ -424,7 +424,7 @@ class Footer extends React.Component {
                                     />
                                     {__GIT_BRANCH__ === "staging" ? (
                                         <a
-                                            href={`https://github.com/bitshares/bitshares-ui/commit/${version.trim()}`}
+                                            href={`https://github.com/indextc/index-ui/commit/${version.trim()}`}
                                             className="version"
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -453,14 +453,14 @@ class Footer extends React.Component {
                         </div>
                         {synced ? null : (
                             <div className="grid-block shrink txtlabel cancel">
-                                <Translate content="footer.nosync" />&nbsp;
-                                &nbsp;
+                                <Translate content="footer.nosync" />
+                                &nbsp; &nbsp;
                             </div>
                         )}
                         {!connected ? (
                             <div className="grid-block shrink txtlabel error">
-                                <Translate content="footer.connection" />&nbsp;
-                                &nbsp;
+                                <Translate content="footer.connection" />
+                                &nbsp; &nbsp;
                             </div>
                         ) : null}
                         {this.props.backup_recommended ? (
@@ -523,16 +523,18 @@ class Footer extends React.Component {
                                             <span className="footer-block-title">
                                                 <Translate content="footer.latency" />
                                             </span>
-                                            &nbsp;{!connected
+                                            &nbsp;
+                                            {!connected
                                                 ? "-"
                                                 : !activeNode.ping
                                                     ? "-"
-                                                    : activeNode.ping +
-                                                      "ms"}&nbsp;/&nbsp;
+                                                    : activeNode.ping + "ms"}
+                                            &nbsp;/&nbsp;
                                             <span className="footer-block-title">
                                                 <Translate content="footer.block" />
                                             </span>
-                                            &nbsp;#{block_height}
+                                            &nbsp;#
+                                            {block_height}
                                         </span>
                                     </div>
                                 </div>

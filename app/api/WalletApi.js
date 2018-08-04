@@ -2,7 +2,7 @@ import {
     SerializerValidation,
     TransactionBuilder,
     TransactionHelper
-} from "bitsharesjs/es";
+} from "indextcjs";
 import ApplicationApi from "./ApplicationApi";
 
 const WalletApi = {

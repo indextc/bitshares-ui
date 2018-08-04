@@ -1,11 +1,11 @@
 import alt from "alt-instance";
-import {Apis} from "bitsharesjs-ws";
+import {Apis} from "indexjs-ws";
 import utils from "common/utils";
 import WalletApi from "api/WalletApi";
 import WalletDb from "stores/WalletDb";
-import {ChainStore} from "bitsharesjs/es";
+import {ChainStore} from "indextcjs";
 import big from "bignumber.js";
-
+import {gatewayPrefixes} from "common/gateways";
 let inProgress = {};
 
 class AssetActions {
@@ -414,13 +414,6 @@ class AssetActions {
 
                 // Fetch next 10 assets for each gateAsset on request
                 if (includeGateways) {
-                    let gatewayPrefixes = [
-                        "BRIDGE",
-                        "GDEX",
-                        "RUDEX",
-                        "OPEN",
-                        "WIN"
-                    ];
                     gatewayPrefixes.forEach(a => {
                         this.getAssetList(a + "." + start, 10);
                     });

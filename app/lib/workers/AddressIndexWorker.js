@@ -1,4 +1,4 @@
-import {key} from "bitsharesjs/es";
+import {key} from "indextcjs";
 
 onmessage = function(event) {
     try {

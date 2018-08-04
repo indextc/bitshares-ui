@@ -4,7 +4,7 @@ import classnames from "classnames";
 import AssetActions from "actions/AssetActions";
 import HelpContent from "../Utility/HelpContent";
 import utils from "common/utils";
-import {ChainStore} from "bitsharesjs/es";
+import {ChainStore} from "indextcjs";
 import FormattedAsset from "../Utility/FormattedAsset";
 import FormattedFee from "../Utility/FormattedFee";
 import counterpart from "counterpart";
@@ -783,7 +783,8 @@ class AccountAssetUpdate extends React.Component {
                             <td style={{border: "none", width: "80%"}}>
                                 <Translate
                                     content={`account.user_issued_assets.${key}`}
-                                />:
+                                />
+                                :
                             </td>
                             <td style={{border: "none"}}>
                                 <div
@@ -839,7 +840,8 @@ class AccountAssetUpdate extends React.Component {
                                 <td style={{border: "none", width: "80%"}}>
                                     <Translate
                                         content={`account.user_issued_assets.${key}`}
-                                    />:
+                                    />
+                                    :
                                 </td>
                                 <td style={{border: "none"}}>
                                     <div
@@ -914,7 +916,8 @@ class AccountAssetUpdate extends React.Component {
 
         let unclaimedBalanceText = (
             <span>
-                <Translate component="span" content="transfer.available" />:&nbsp;
+                <Translate component="span" content="transfer.available" />
+                :&nbsp;
                 <FormattedAsset
                     amount={unclaimedBalance}
                     asset={asset.get("id")}
@@ -1123,7 +1126,8 @@ class AccountAssetUpdate extends React.Component {
                                         </div>
                                         <div>
                                             <h5>
-                                                <Translate content="exchange.price" />:{" "}
+                                                <Translate content="exchange.price" />
+                                                :{" "}
                                                 <FormattedPrice
                                                     style={{fontWeight: "bold"}}
                                                     quote_amount={
@@ -1156,8 +1160,8 @@ class AccountAssetUpdate extends React.Component {
 
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                 </div>
@@ -1197,8 +1201,8 @@ class AccountAssetUpdate extends React.Component {
                                 >
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                 </AssetWhitelist>
@@ -1312,8 +1316,8 @@ class AccountAssetUpdate extends React.Component {
 
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                 </div>
@@ -1340,8 +1344,8 @@ class AccountAssetUpdate extends React.Component {
                                         />
                                         {
                                             <p>
-                                                <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                                {updateFee}
+                                                <Translate content="account.user_issued_assets.approx_fee" />
+                                                : {updateFee}
                                             </p>
                                         }
                                     </div>
@@ -1383,8 +1387,8 @@ class AccountAssetUpdate extends React.Component {
                                     />
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                 </div>
@@ -1405,8 +1409,8 @@ class AccountAssetUpdate extends React.Component {
                                     {permissions}
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                 </div>
@@ -1438,7 +1442,8 @@ class AccountAssetUpdate extends React.Component {
                                                                 width: "80%"
                                                             }}
                                                         >
-                                                            <Translate content="account.user_issued_assets.charge_market_fee" />:
+                                                            <Translate content="account.user_issued_assets.charge_market_fee" />
+                                                            :
                                                         </td>
                                                         <td
                                                             style={{
@@ -1522,8 +1527,8 @@ class AccountAssetUpdate extends React.Component {
                                     {flags}
                                     {
                                         <p>
-                                            <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                                            {updateFee}
+                                            <Translate content="account.user_issued_assets.approx_fee" />
+                                            : {updateFee}
                                         </p>
                                     }
                                     {errors.conflict_producer ? (
@@ -1555,7 +1560,8 @@ class AccountAssetUpdate extends React.Component {
                                         asset={asset.get("symbol")}
                                     />
                                     <div style={{paddingBottom: "1rem"}}>
-                                        <Translate content="explorer.asset.fee_pool.unclaimed_issuer_income" />:&nbsp;
+                                        <Translate content="explorer.asset.fee_pool.unclaimed_issuer_income" />
+                                        :&nbsp;
                                         {dynamicObject ? (
                                             <FormattedAsset
                                                 amount={dynamicObject.get(
