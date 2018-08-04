@@ -1,8 +1,8 @@
 {
-    "name": "BitShares2-light",
+    "name": "Index-light",
     "version": "2.0.180720",
-    "description": "Advanced wallet interface for the BitShares financial blockchain.",
-    "homepage": "https://github.com/bitshares/bitshares-ui",
+    "description": "Advanced wallet interface for the Index financial blockchain.",
+    "homepage": "https://github.com/indextc/index-ui",
     "author": "Sigve Kvalsvik <kvalsvik.crypto@gmail.com>",
     "contributors": [
         "James Calfee",
@@ -17,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/bitshares/bitshares-ui"
+        "url": "git://github.com/indextc/index-ui"
     },
     "main": "build/electron/index.js",
     "scripts": {
@@ -81,7 +81,7 @@
     },
     "browsersList": "electron 1.7",
     "build": {
-        "productName": "BitShares",
+        "productName": "Index",
         "appId": "org.bitshares.graphene",
         "files": [
             "build/electron",
@@ -121,7 +121,7 @@
                 "deb",
                 "AppImage"
             ],
-            "synopsis": "BitShares: Cryptocurrency and Decentralized Exchange"
+            "synopsis": "Index: Cryptocurrency and Decentralized Exchange"
         },
         "directories": {
             "buildResources": "resources",
@@ -134,7 +134,8 @@
         "alt-react": "git+https://github.com/bitshares/react.git",
         "bignumber.js": "^4.0.0",
         "bitshares-ui-style-guide": "git+https://github.com/bitshares/bitshares-ui-style-guide.git#02a57452198f9c9b7218f38868045df599b005a5",
-        "bitsharesjs": "^1.8.0",
+        "indextcjs": "^1.8.0",
+        "indexjs-ws": "1.5.5",
         "browser-locale": "^1.0.3",
         "classnames": "^2.2.1",
         "cookies-js": "^1.2.1",

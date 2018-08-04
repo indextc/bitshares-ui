@@ -6,7 +6,7 @@ import AssetName from "../Utility/AssetName";
 import MarginPositions from "./MarginPositions";
 import {RecentTransactions} from "./RecentTransactions";
 import Proposals from "components/Account/Proposals";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import SettingsActions from "actions/SettingsActions";
 import utils from "common/utils";
 
@@ -460,10 +460,12 @@ class AccountOverview extends React.Component {
                                                     style={{textAlign: "right"}}
                                                 >
                                                     <Translate content="exchange.price" />{" "}
-                                                    (<AssetName
+                                                    (
+                                                    <AssetName
                                                         name={preferredUnit}
                                                         noTip
-                                                    />)
+                                                    />
+                                                    )
                                                 </th>
                                                 <th
                                                     onClick={this._toggleSortOrder.bind(

@@ -18,7 +18,7 @@ import {debounce} from "lodash-es";
 import AssetSelector from "../Utility/AssetSelector";
 import counterpart from "counterpart";
 import LoadingIndicator from "../LoadingIndicator";
-import {ChainValidation, ChainStore} from "bitsharesjs";
+import {ChainValidation, ChainStore} from "indextcjs";
 import debounceRender from "react-debounce-render";
 import ZfApi from "react-foundation-apps/src/utils/foundation-api";
 import {gatewayPrefixes} from "common/gateways";
@@ -220,9 +220,8 @@ class MarketGroup extends React.Component {
                         name={
                             base === "others" ? (
                                 <span>
-                                    <AssetName name={market.quote} />:<AssetName
-                                        name={market.base}
-                                    />
+                                    <AssetName name={market.quote} />:
+                                    <AssetName name={market.base} />
                                 </span>
                             ) : (
                                 <AssetName
@@ -988,7 +987,8 @@ class MyMarkets extends React.Component {
                                 <tr style={{width: "100%"}}>
                                     <td>
                                         <label>
-                                            <Translate content="account.user_issued_assets.name" />:
+                                            <Translate content="account.user_issued_assets.name" />
+                                            :
                                         </label>
                                         <input
                                             style={{
@@ -1170,25 +1170,28 @@ class MyMarketsWrapper extends React.Component {
     }
 }
 
-export default connect(MyMarketsWrapper, {
-    listenTo() {
-        return [SettingsStore, MarketsStore, AssetStore];
-    },
-    getProps() {
-        return {
-            starredMarkets: SettingsStore.getState().starredMarkets,
-            onlyLiquid: SettingsStore.getState().viewSettings.get(
-                "onlyLiquid",
-                true
-            ),
-            defaultMarkets: SettingsStore.getState().defaultMarkets,
-            viewSettings: SettingsStore.getState().viewSettings,
-            preferredBases: SettingsStore.getState().preferredBases,
-            marketStats: MarketsStore.getState().allMarketStats,
-            userMarkets: SettingsStore.getState().userMarkets,
-            searchAssets: AssetStore.getState().assets,
-            onlyStars: MarketsStore.getState().onlyStars,
-            assetsLoading: AssetStore.getState().assetsLoading
-        };
+export default connect(
+    MyMarketsWrapper,
+    {
+        listenTo() {
+            return [SettingsStore, MarketsStore, AssetStore];
+        },
+        getProps() {
+            return {
+                starredMarkets: SettingsStore.getState().starredMarkets,
+                onlyLiquid: SettingsStore.getState().viewSettings.get(
+                    "onlyLiquid",
+                    true
+                ),
+                defaultMarkets: SettingsStore.getState().defaultMarkets,
+                viewSettings: SettingsStore.getState().viewSettings,
+                preferredBases: SettingsStore.getState().preferredBases,
+                marketStats: MarketsStore.getState().allMarketStats,
+                userMarkets: SettingsStore.getState().userMarkets,
+                searchAssets: AssetStore.getState().assets,
+                onlyStars: MarketsStore.getState().onlyStars,
+                assetsLoading: AssetStore.getState().assetsLoading
+            };
+        }
     }
-});
+);

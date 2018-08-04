@@ -5,7 +5,7 @@ import AccountImage from "../Account/AccountImage";
 import AccountStore from "stores/AccountStore";
 import AccountActions from "actions/AccountActions";
 import Translate from "react-translate-component";
-import {ChainStore, PublicKey, ChainValidation} from "bitsharesjs";
+import {ChainStore, PublicKey, ChainValidation} from "indextcjs";
 import ChainTypes from "../Utility/ChainTypes";
 import BindToChainState from "../Utility/BindToChainState";
 import classnames from "classnames";
@@ -352,8 +352,9 @@ class AccountSelector extends React.Component {
                                 )}
                             >
                                 <span style={{paddingRight: "1.5rem"}}>
-                                    {account && account.statusText}&nbsp;{!!displayText &&
-                                        displayText}
+                                    {account && account.statusText}
+                                    &nbsp;
+                                    {!!displayText && displayText}
                                 </span>
                                 {linked_status}
                             </label>
@@ -494,16 +495,19 @@ class AccountSelector extends React.Component {
 
 AccountSelector = BindToChainState(AccountSelector);
 
-AccountSelector = connect(AccountSelector, {
-    listenTo() {
-        return [AccountStore];
-    },
-    getProps() {
-        return {
-            myActiveAccounts: AccountStore.getState().myActiveAccounts,
-            contacts: AccountStore.getState().accountContacts
-        };
+AccountSelector = connect(
+    AccountSelector,
+    {
+        listenTo() {
+            return [AccountStore];
+        },
+        getProps() {
+            return {
+                myActiveAccounts: AccountStore.getState().myActiveAccounts,
+                contacts: AccountStore.getState().accountContacts
+            };
+        }
     }
-});
+);
 
 export default AccountSelector;

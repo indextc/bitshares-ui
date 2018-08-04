@@ -1,5 +1,5 @@
-import {Apis, Manager, ChainConfig} from "bitsharesjs-ws";
-import {ChainStore} from "bitsharesjs";
+import {Apis, Manager, ChainConfig} from "indexjs-ws";
+import {ChainStore} from "indextcjs";
 import chainIds from "chain/chainIds";
 
 // Stores

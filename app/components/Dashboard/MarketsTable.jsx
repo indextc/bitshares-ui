@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "alt-react";
 import {Link} from "react-router-dom";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import Translate from "react-translate-component";
 import cnames from "classnames";
 import MarketsStore from "stores/MarketsStore";
@@ -222,19 +222,22 @@ class MarketRow extends React.Component {
 }
 
 MarketRow = BindToChainState(MarketRow);
-MarketRow = connect(MarketRow, {
-    listenTo() {
-        return [MarketsStore];
-    },
-    getProps(props) {
-        return {
-            marketStats: MarketsStore.getState().allMarketStats.get(
-                props.marketId
-            ),
-            starredMarkets: SettingsStore.getState().starredMarkets
-        };
+MarketRow = connect(
+    MarketRow,
+    {
+        listenTo() {
+            return [MarketsStore];
+        },
+        getProps(props) {
+            return {
+                marketStats: MarketsStore.getState().allMarketStats.get(
+                    props.marketId
+                ),
+                starredMarkets: SettingsStore.getState().starredMarkets
+            };
+        }
     }
-});
+);
 
 class MarketsTable extends React.Component {
     constructor() {
@@ -501,16 +504,19 @@ class MarketsTable extends React.Component {
     }
 }
 
-export default connect(MarketsTable, {
-    listenTo() {
-        return [SettingsStore];
-    },
-    getProps() {
-        let {marketDirections, hiddenMarkets} = SettingsStore.getState();
+export default connect(
+    MarketsTable,
+    {
+        listenTo() {
+            return [SettingsStore];
+        },
+        getProps() {
+            let {marketDirections, hiddenMarkets} = SettingsStore.getState();
 
-        return {
-            marketDirections,
-            hiddenMarkets
-        };
+            return {
+                marketDirections,
+                hiddenMarkets
+            };
+        }
     }
-});
+);

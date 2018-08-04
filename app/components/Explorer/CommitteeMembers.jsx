@@ -3,7 +3,7 @@ import Immutable from "immutable";
 import AccountImage from "../Account/AccountImage";
 import ChainTypes from "../Utility/ChainTypes";
 import BindToChainState from "../Utility/BindToChainState";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import FormattedAsset from "../Utility/FormattedAsset";
 import Translate from "react-translate-component";
 import {connect} from "alt-react";
@@ -364,7 +364,8 @@ class CommitteeMembers extends React.Component {
                     <div className="grid-block shrink">
                         <div className="grid-content">
                             <h5>
-                                <Translate content="explorer.committee_members.active" />:{" "}
+                                <Translate content="explorer.committee_members.active" />
+                                :{" "}
                                 {
                                     Object.keys(
                                         globalObject.active_committee_members
@@ -424,20 +425,23 @@ class CommitteeMembersStoreWrapper extends React.Component {
     }
 }
 
-CommitteeMembersStoreWrapper = connect(CommitteeMembersStoreWrapper, {
-    listenTo() {
-        return [SettingsStore];
-    },
-    getProps() {
-        return {
-            cardView: SettingsStore.getState().viewSettings.get(
-                "cardViewCommittee"
-            ),
-            filterCommitteeMember: SettingsStore.getState().viewSettings.get(
-                "filterCommitteeMember"
-            )
-        };
+CommitteeMembersStoreWrapper = connect(
+    CommitteeMembersStoreWrapper,
+    {
+        listenTo() {
+            return [SettingsStore];
+        },
+        getProps() {
+            return {
+                cardView: SettingsStore.getState().viewSettings.get(
+                    "cardViewCommittee"
+                ),
+                filterCommitteeMember: SettingsStore.getState().viewSettings.get(
+                    "filterCommitteeMember"
+                )
+            };
+        }
     }
-});
+);
 
 export default CommitteeMembersStoreWrapper;

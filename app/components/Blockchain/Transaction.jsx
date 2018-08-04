@@ -16,7 +16,7 @@ import Icon from "../Icon/Icon";
 import PrivateKeyStore from "stores/PrivateKeyStore";
 import WalletUnlockActions from "actions/WalletUnlockActions";
 import ProposedOperation from "./ProposedOperation";
-import {ChainTypes} from "bitsharesjs";
+import {ChainTypes} from "indextcjs";
 let {operations} = ChainTypes;
 import ReactTooltip from "react-tooltip";
 import moment from "moment";
@@ -172,7 +172,8 @@ class Transaction extends React.Component {
                             <td className="memo">{text}</td>
                         ) : !text && isMine ? (
                             <td>
-                                <Translate content="transfer.memo_unlock" />&nbsp;
+                                <Translate content="transfer.memo_unlock" />
+                                &nbsp;
                                 <a onClick={this._toggleLock.bind(this)}>
                                     <Icon
                                         name="locked"
@@ -988,7 +989,8 @@ class Transaction extends React.Component {
                             <td>{text}</td>
                         ) : !text && isMine ? (
                             <td>
-                                <Translate content="transfer.memo_unlock" />&nbsp;
+                                <Translate content="transfer.memo_unlock" />
+                                &nbsp;
                                 <a onClick={this._toggleLock.bind(this)}>
                                     <Icon
                                         name="locked"
@@ -1427,7 +1429,8 @@ class Transaction extends React.Component {
                                 />
                             </td>
                             <td style={{fontSize: "80%"}}>
-                                {op[1].balance_owner_key.substring(0, 10)}...
+                                {op[1].balance_owner_key.substring(0, 10)}
+                                ...
                             </td>
                         </tr>
                     );

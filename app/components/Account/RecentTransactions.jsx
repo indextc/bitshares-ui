@@ -5,7 +5,7 @@ import Operation from "../Blockchain/Operation";
 import ChainTypes from "../Utility/ChainTypes";
 import BindToChainState from "../Utility/BindToChainState";
 import utils from "common/utils";
-import {ChainTypes as grapheneChainTypes} from "bitsharesjs";
+import {ChainTypes as grapheneChainTypes} from "indextcjs";
 import TransitionWrapper from "../Utility/TransitionWrapper";
 import ps from "perfect-scrollbar";
 import counterpart from "counterpart";
@@ -322,8 +322,8 @@ class RecentTransactions extends React.Component {
                 </td>
                 <td className="column-hide-tiny" />
                 <td colSpan="2" style={{textAlign: "center"}}>
-                    &nbsp;{(this.props.showMore &&
-                        historyCount > this.props.limit) ||
+                    &nbsp;
+                    {(this.props.showMore && historyCount > this.props.limit) ||
                     (20 && limit < historyCount) ? (
                         <a onClick={this._onIncreaseLimit.bind(this)}>
                             <Icon

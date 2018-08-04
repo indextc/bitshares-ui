@@ -4,7 +4,7 @@ import IntlActions from "actions/IntlActions";
 import Immutable, {fromJS} from "immutable";
 import {merge} from "lodash-es";
 import ls from "common/localStorage";
-import {Apis} from "bitsharesjs-ws";
+import {Apis} from "indexjs-ws";
 import {settingsAPIs} from "api/apiConfig";
 import {
     getDefaultTheme,
@@ -14,7 +14,7 @@ import {
     getUnits
 } from "branding";
 
-const CORE_ASSET = "BTS"; // Setting this to BTS to prevent loading issues when used with BTS chain which is the most usual case currently
+const CORE_ASSET = "INDEX"; // Setting this to INDEX to prevent loading issues when used with INDEX chain which is the most usual case currently
 
 const STORAGE_KEY = "__graphene__";
 let ss = new ls(STORAGE_KEY);
@@ -204,10 +204,10 @@ class SettingsStore {
             };
 
             let coreAssets = {
-                markets_4018d784: "BTS",
+                markets_4018d784: "INDEX",
                 markets_39f5e2ed: "TEST"
             };
-            let coreAsset = coreAssets[this.starredKey] || "BTS";
+            let coreAsset = coreAssets[this.starredKey] || "INDEX";
             this.defaults.unit[0] = coreAsset;
 
             let defaultBases = bases[this.starredKey] || bases.markets_4018d784;

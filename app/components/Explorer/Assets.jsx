@@ -10,7 +10,7 @@ import assetUtils from "common/asset_utils";
 import counterpart from "counterpart";
 import FormattedAsset from "../Utility/FormattedAsset";
 import AssetName from "../Utility/AssetName";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import cnames from "classnames";
 import utils from "common/utils";
 import LoadingIndicator from "../LoadingIndicator";
@@ -28,7 +28,7 @@ class Assets extends React.Component {
             totalAssets:
                 typeof accountStorage.get("totalAssets") != "object"
                     ? accountStorage.get("totalAssets")
-                    : 3000,
+                    : 200,
             assetsFetched: 0,
             activeFilter: "market",
             filterUIA: props.filterUIA || "",
@@ -74,6 +74,7 @@ class Assets extends React.Component {
             accountStorage.set("totalAssets", assets.size);
         }
 
+        console.log(this.state);
         if (this.state.assetsFetched >= this.state.totalAssets - 100) {
             this.setState({isLoading: false});
         }
@@ -137,7 +138,7 @@ class Assets extends React.Component {
                             ? description.market
                             : coreAsset
                                 ? coreAsset.get("symbol")
-                                : "BTS");
+                                : "INDEX");
 
                     return (
                         <tr key={asset.symbol}>
@@ -198,7 +199,7 @@ class Assets extends React.Component {
                             ? description.market
                             : coreAsset
                                 ? coreAsset.get("symbol")
-                                : "BTS");
+                                : "INDEX");
 
                     return (
                         <tr key={asset.symbol}>
@@ -269,7 +270,7 @@ class Assets extends React.Component {
                             ? description.market
                             : coreAsset
                                 ? coreAsset.get("symbol")
-                                : "BTS");
+                                : "INDEX");
 
                     return (
                         <tr key={asset.id.split(".")[2]}>

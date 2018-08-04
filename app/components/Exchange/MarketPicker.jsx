@@ -6,11 +6,11 @@ import {Link} from "react-router-dom";
 import AssetName from "../Utility/AssetName";
 import Icon from "../Icon/Icon";
 import {debounce} from "lodash-es";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import Translate from "react-translate-component";
 import LoadingIndicator from "../LoadingIndicator";
 import AssetActions from "actions/AssetActions";
-import {ChainValidation} from "bitsharesjs";
+import {ChainValidation} from "indextcjs";
 import counterpart from "counterpart";
 import utils from "common/utils";
 import {hasGatewayPrefix} from "common/gatewayUtils";
@@ -329,7 +329,8 @@ class MarketPickerWrapper extends React.Component {
                     />
                 </div>
                 <div className="marketPicker__subHeader">
-                    <Translate content="exchange.market_picker.sub_title" />&nbsp;
+                    <Translate content="exchange.market_picker.sub_title" />
+                    &nbsp;
                     <Link
                         to={`/asset/${marketPickerAsset}`}
                         style={{
@@ -459,16 +460,19 @@ class MarketPicker extends React.Component {
     }
 }
 
-MarketPicker = connect(MarketPicker, {
-    listenTo() {
-        return [AssetStore];
-    },
-    getProps() {
-        return {
-            searchAssets: AssetStore.getState().assets,
-            assetsLoading: AssetStore.getState().assetsLoading
-        };
+MarketPicker = connect(
+    MarketPicker,
+    {
+        listenTo() {
+            return [AssetStore];
+        },
+        getProps() {
+            return {
+                searchAssets: AssetStore.getState().assets,
+                assetsLoading: AssetStore.getState().assetsLoading
+            };
+        }
     }
-});
+);
 
 export default MarketPicker;

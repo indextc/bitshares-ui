@@ -18,7 +18,7 @@ import FormattedPrice from "../Utility/FormattedPrice";
 import counterpart from "counterpart";
 import HelpContent from "../Utility/HelpContent";
 import Immutable from "immutable";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 import {List} from "immutable";
 import Icon from "../Icon/Icon";
 
@@ -59,7 +59,9 @@ class BorrowModalContent extends React.Component {
                 props.backing_asset
             );
 
-            let target_collateral_ratio = !isNaN(currentPosition.target_collateral_ratio) 
+            let target_collateral_ratio = !isNaN(
+                currentPosition.target_collateral_ratio
+            )
                 ? currentPosition.target_collateral_ratio / 100
                 : 0;
 
@@ -238,15 +240,17 @@ class BorrowModalContent extends React.Component {
         let collateral;
 
         if (this.state.lockedCR) {
-            short_amount = (this.state.collateral * feed_price / ratio).toFixed(
-                this.props.backing_asset.get("precision")
-            );
+            short_amount = (
+                (this.state.collateral * feed_price) /
+                ratio
+            ).toFixed(this.props.backing_asset.get("precision"));
             collateral = this.state.collateral;
         } else {
             short_amount = this.state.short_amount;
-            collateral = (this.state.short_amount / feed_price * ratio).toFixed(
-                this.props.backing_asset.get("precision")
-            );
+            collateral = (
+                (this.state.short_amount / feed_price) *
+                ratio
+            ).toFixed(this.props.backing_asset.get("precision"));
         }
 
         let newState = {
@@ -280,7 +284,7 @@ class BorrowModalContent extends React.Component {
                     utils.get_asset_precision(this.props.backing_asset) +
                     initialCollateral -
                     10,
-                this.state.short_amount / this._getFeedPrice() * 1000.0
+                (this.state.short_amount / this._getFeedPrice()) * 1000.0
             )
         );
 
@@ -308,8 +312,7 @@ class BorrowModalContent extends React.Component {
             initialCollateral -
             10;
         const short_amount =
-            maximumCollateral /
-            this.state.collateral_ratio *
+            (maximumCollateral / this.state.collateral_ratio) *
             this._getFeedPrice();
 
         const newState = {
@@ -431,20 +434,26 @@ class BorrowModalContent extends React.Component {
         );
         let currentPosition = this._getCurrentPosition(this.props);
 
-        let isTCR = typeof(this.state.target_collateral_ratio) !== "undefined" 
-            && this.state.target_collateral_ratio > 0 
-            && this.state.useTargetCollateral
-            ? true 
-            : false;
-        
+        let isTCR =
+            typeof this.state.target_collateral_ratio !== "undefined" &&
+            this.state.target_collateral_ratio > 0 &&
+            this.state.useTargetCollateral
+                ? true
+                : false;
+
         let extensionsProp = false;
 
-        if(isTCR) {
-            extensionsProp = { target_collateral_ratio: parseInt(this.state.target_collateral_ratio * 100, 10) };
+        if (isTCR) {
+            extensionsProp = {
+                target_collateral_ratio: parseInt(
+                    this.state.target_collateral_ratio * 100,
+                    10
+                )
+            };
         }
 
         var tr = WalletApi.new_transaction();
-        if(extensionsProp) {
+        if (extensionsProp) {
             tr.add_type_operation("call_order_update", {
                 fee: {
                     amount: 0,
@@ -491,7 +500,7 @@ class BorrowModalContent extends React.Component {
                         10
                     ),
                     asset_id: this.props.quote_asset.get("id")
-                },
+                }
             });
         }
         WalletDb.process_transaction(tr, null, true).catch(err => {
@@ -691,13 +700,15 @@ class BorrowModalContent extends React.Component {
         let updateTargetCollateral = (
             <span>
                 <label>
-                    <Translate content="borrow.target_collateral_ratio" />&nbsp;&nbsp;
+                    <Translate content="borrow.target_collateral_ratio" />
+                    &nbsp;&nbsp;
                     <span
                         className="tooltip"
                         data-html={true}
                         data-tip={counterpart.translate(
-                        "tooltip.target_collateral_ratio"
-                    )}>
+                            "tooltip.target_collateral_ratio"
+                        )}
+                    >
                         <Icon
                             name="question-circle"
                             title="icons.question_circle"
@@ -705,29 +716,32 @@ class BorrowModalContent extends React.Component {
                     </span>
                 </label>
                 <div style={{marginBottom: "1em"}}>
-                    <input 
-                        type="checkbox" 
-                        onClick={this._setUseTargetCollateral.bind(this)} 
-                        checked={this.state.useTargetCollateral ? "checked=checked" : ""} /> 
+                    <input
+                        type="checkbox"
+                        onClick={this._setUseTargetCollateral.bind(this)}
+                        checked={
+                            this.state.useTargetCollateral
+                                ? "checked=checked"
+                                : ""
+                        }
+                    />
                     &nbsp;&nbsp;
                     <Translate content="borrow.enable_target_collateral_ratio" />
                 </div>
-                {this.state.useTargetCollateral ? 
+                {this.state.useTargetCollateral ? (
                     <span>
-                        <input 
+                        <input
                             value={
-                                isNaN(target_collateral_ratio) 
+                                isNaN(target_collateral_ratio)
                                     ? "0"
                                     : target_collateral_ratio
                             }
-                            onChange={this._onTargetRatioChange.bind(
-                                this
-                            )}
+                            onChange={this._onTargetRatioChange.bind(this)}
                             type="text"
                             style={{
                                 float: "right",
                                 marginTop: -10,
-                                width: "12%",
+                                width: "12%"
                             }}
                         />
                         <input
@@ -735,16 +749,16 @@ class BorrowModalContent extends React.Component {
                             min="0"
                             max="6"
                             step="0.01"
-                            onChange={this._onTargetRatioChange.bind(
-                                this
-                            )}
-                            value={isNaN(target_collateral_ratio)
-                                ? "0"
-                                : target_collateral_ratio}
+                            onChange={this._onTargetRatioChange.bind(this)}
+                            value={
+                                isNaN(target_collateral_ratio)
+                                    ? "0"
+                                    : target_collateral_ratio
+                            }
                             type="range"
                         />
                     </span>
-                    : null}
+                ) : null}
             </span>
         );
 
@@ -836,7 +850,8 @@ class BorrowModalContent extends React.Component {
                             >
                                 <div className="borrow-price-feeds">
                                     <span className="borrow-price-label">
-                                        <Translate content="transaction.feed_price" />:&nbsp;
+                                        <Translate content="transaction.feed_price" />
+                                        :&nbsp;
                                     </span>
                                     <FormattedPrice
                                         noPopOver
@@ -898,7 +913,8 @@ class BorrowModalContent extends React.Component {
                                     }
                                 >
                                     <span className="borrow-price-label">
-                                        <Translate content="exchange.your_price" />:&nbsp;
+                                        <Translate content="exchange.your_price" />
+                                        :&nbsp;
                                     </span>
                                     {this.state.newPosition ? (
                                         <FormattedPrice

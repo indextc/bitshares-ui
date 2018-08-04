@@ -8,7 +8,7 @@ import FormattedAsset from "../Utility/FormattedAsset";
 import FormattedFee from "../Utility/FormattedFee";
 import AssetActions from "actions/AssetActions";
 import AssetWrapper from "../Utility/AssetWrapper";
-import {ChainStore} from "bitsharesjs";
+import {ChainStore} from "indextcjs";
 
 const stateSetter = (that, key, transform = value => value) => value =>
     that.setState({[key]: transform(value)});
@@ -70,7 +70,8 @@ class FundFeePool extends React.Component {
         }
         const balanceText = (
             <span>
-                <Translate component="span" content="transfer.available" />:&nbsp;
+                <Translate component="span" content="transfer.available" />
+                :&nbsp;
                 <FormattedAsset amount={balance} asset={coreID} />
             </span>
         );
@@ -133,8 +134,8 @@ class FundFeePool extends React.Component {
                     <br />
                     <br />
                     <p>
-                        <Translate content="account.user_issued_assets.approx_fee" />:{" "}
-                        <FormattedFee opType="asset_fund_fee_pool" />
+                        <Translate content="account.user_issued_assets.approx_fee" />
+                        : <FormattedFee opType="asset_fund_fee_pool" />
                     </p>
                     <hr />
                 </div>
